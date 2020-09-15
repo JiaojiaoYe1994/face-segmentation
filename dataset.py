@@ -26,7 +26,6 @@ class CelebA(Dataset):
         self.mask_transforms =transforms.Compose([  
             transforms.Resize(size=(size, size)),
             transforms.ToTensor(),
-
         ])
         self.img_transforms = transforms.Compose([  
             transforms.Resize(size=(size, size)),
@@ -59,7 +58,7 @@ class CelebA(Dataset):
         _mask = Image.fromarray(mask_array)
         _img = Image.fromarray(_img)
 
-        _img, _mask = self.img_transforms(_img), self.mask_transforms(_mask)
+        _img, _mask = self.img_transforms(_img), self.mask_transforms(_mask)*255.0
         
         return _img, _mask
 
